@@ -76,7 +76,7 @@ Swagger UI: http://localhost:8000/docs
 ### 1. Запускаем контейнер Docker
 
 ```sh
-docker-exec -it task_manager-app-1 /bin/sh
+docker exec -it task_manager-app-1 /bin/sh
 ```
 ### 2.Команда:
 ```sh
