@@ -156,13 +156,15 @@ class FileTaskDataUpdate(BaseModel):
         ...,
         title='Исходный путь файла',
         description="Исходный путь файла",
-        min_length=1
+        min_length=1,
+        example = "/app/files/file.txt"
     )
     destination_path: Optional[str] = Field(
         None,
         title='Целевой путь файла',
         description="Целевой путь для копирования ",
-        min_length=1
+        min_length=1,
+        example="/app/files/file1.txt"
     )
 
 
