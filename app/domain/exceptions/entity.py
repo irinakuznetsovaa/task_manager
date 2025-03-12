@@ -2,16 +2,28 @@ from dataclasses import dataclass
 
 from app.domain.exceptions.base import DomainException
 
-@dataclass(frozen=True)
+@dataclass
 class EntityException(DomainException):
-    message: str = "Entity error occurred."
+    """ Исключение, связанное с ошибками сущностей."""
+    message: str = "Ошибка entity."
 
-    def __str__(self):
-        return self.message
 
-@dataclass(frozen=True)
-class TaskError(EntityException):
-    message: str = "Error related to the task."
+@dataclass
+class TaskException(EntityException):
+    """ Ошибка, связанная с задачами."""
+    message: str = "Ошибка задачи"
 
-    def __str__(self):
-        return self.message
+@dataclass
+class TaskNotFoundException(TaskException):
+    """ Исключение, возникающее, если задача не найдена. """
+    message:str = "Задача не найдена"
+
+@dataclass
+class TaskProcessingException(TaskException):
+    """Исключение, возникающее при ошибках обработки задач."""
+    message:str = "Ошибка обработки задачи"
+
+@dataclass
+class TaskAlreadyRunningException(TaskException):
+    """ Исключение, возникающее, если задача уже выполняется. """
+    message:str ="Задача уже выполняется"

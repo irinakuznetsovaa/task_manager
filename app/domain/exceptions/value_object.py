@@ -3,33 +3,55 @@ from dataclasses import dataclass
 from app.domain.exceptions.base import DomainException
 
 
-@dataclass(frozen=True, eq=False)
+@dataclass
 class ValidationException(DomainException):
-    message: str = "Validation error occurred."
-
-    def __str__(self):
-        return self.message
+    """ Исключение, возникающее если данные невалидны. """
+    message: str = "Ошибка валидации."
 
 
-@dataclass(frozen=True)
+@dataclass
 class TaskStatusException(ValidationException):
-    message: str = "Invalid task status."
-
-    def __str__(self):
-        return self.message
+    """ Исключение, возникающее если статус задачи невалиден. """
+    message: str = "Невалидный статус задачи."
 
 
-@dataclass(frozen=True)
-class FileSizeException(ValidationException):
-    message: str = "File size exceeds the limit."
-
-    def __str__(self):
-        return self.message
+@dataclass
+class TaskTypeException(ValidationException):
+    """ Исключение, возникающее если тип задачи невалиден. """
+    message: str = "Невалидный тип задачи."
 
 
-@dataclass(frozen=True)
-class FilePathException(ValidationException):
-    message: str = "Invalid file path."
+@dataclass
+class TaskNameException(ValidationException):
+    """ Исключение, возникающее если имя задачи невалидно. """
+    message: str = "Невалидное имя задачи."
 
-    def __str__(self):
-        return self.message
+@dataclass
+class TaskResultException(ValidationException):
+    """ Исключение, возникающее если результат задачи невалиден. """
+    message: str = "Невалидный результат задачи."
+
+@dataclass
+class FileValidationException(ValidationException):
+    """ Исключение, возникающее если файл невалиден. """
+    message: str = "Невалидный file"
+
+@dataclass
+class PathEmptyException(FileValidationException):
+    """ Исключение, возникающее путь к файлу пустой """
+    message: str = "FileTaskData - путь не может быть пустым"
+
+@dataclass
+class ForbiddenCharacterException(FileValidationException):
+    """ Исключение, возникающее есть путь содержит запрещенные символы """
+    message: str = "FileTaskData - путь содержит запрещенные символы"
+
+
+@dataclass
+class InvalidPathException(FileValidationException):
+    """ Исключение, возникающее есть путь не абсолютный """
+    message: str = "FileTaskData - путь должен быть абсолютным"
+
+
+
+
