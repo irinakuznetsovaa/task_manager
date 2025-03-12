@@ -179,8 +179,7 @@ class UpdateTaskRequest(BaseModel):
         None,
         min_length=1,
         title='Наименование задачи',
-        description="Наименование задачи",
-        examples='Task Update'
+        description="Наименование задачи"
     )
     task_data: Optional[FileTaskDataUpdate] = Field(
         None
