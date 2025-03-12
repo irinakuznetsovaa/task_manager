@@ -1,9 +1,13 @@
 from dataclasses import dataclass
 
 
-@dataclass(frozen=True, eq=False)
-class DomainException(Exception):
-    message: str = "Application error occurred"
+@dataclass
+class DomainException(BaseException):
+    """
+    Базовое исключение для всех ошибок в доменном слое приложения.
+    Args:message (str): Сообщение об ошибке.
+    """
+    message: str = "Произошла ошибка приложения"
 
     def __str__(self):
         return self.message
